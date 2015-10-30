@@ -8,7 +8,7 @@ using RoboChat.Common.Messages;
 
 namespace RoboChat.Server.Actors
 {
-    public class ChatServerCoordinatorActor : TypedActor, IHandle<FindNearestHubMessage>, IHandle<GetHubNameMessage>
+    public class ChatServerCoordinatorActor : TypedActor, IHandle<FindNearestHubMessage>, IHandle<GetHubNameMessage>, IHandle<ListRoomsMessage>
     {
         public ChatServerCoordinatorActor()
         {
@@ -63,6 +63,11 @@ namespace RoboChat.Server.Actors
         public void Handle(GetHubNameMessage message)
         {
             Sender.Tell(new HubNameResponseMessage(GetHubName()));
+        }
+
+        public void Handle(ListRoomsMessage message)
+        {
+            _hubs.Forward(message);
         }
     }
 }

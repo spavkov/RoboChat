@@ -4,7 +4,10 @@ using RoboChat.Common.Messages;
 
 namespace RoboChat.Client.Actors
 {
-    public class ChatClientActor : TypedActor, IHandle<NearestHubResponseMessage>
+    public class ChatClientActor : TypedActor, 
+        IHandle<NearestHubResponseMessage>,
+        IHandle<ListRoomsMessage>,
+    IHandle<ListRoomsResponseMessage>
     {
         private readonly ActorSelection _server = Context.ActorSelection("akka.tcp://RoboChatServer@localhost:8081/user/ChatServerCoordinator");
         private IActorRef _hub;
@@ -26,6 +29,19 @@ namespace RoboChat.Client.Actors
             {
                 Console.WriteLine("Discarding the hub: " + message.HubId + " " + message.HubRegion);
             }
+        }
+
+        public void Handle(ListRoomsResponseMessage message)
+        {
+            foreach (var chatRoomDetailse in message.Rooms)
+            {
+                Console.WriteLine(chatRoomDetailse.Id  + " " + chatRoomDetailse.Name + " " + chatRoomDetailse.ParticipantsCount);
+            }
+        }
+
+        public void Handle(ListRoomsMessage message)
+        {
+            _server.Tell(message);
         }
     }
 }

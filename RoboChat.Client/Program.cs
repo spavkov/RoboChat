@@ -37,7 +37,33 @@ namespace RoboChat.Client
                 //selection.Tell(new FindNearestHubMessage());
 
                 var client = system.ActorOf(Props.Create<ChatClientActor>());
-                
+
+                Console.WriteLine("Enter command");
+
+                while (true)
+                {
+                    var input = Console.ReadLine();
+                    if (input.StartsWith("/"))
+                    {
+                        var parts = input.Split(' ');
+                        var cmd = parts[0].ToLowerInvariant();
+                        var rest = string.Join(" ", parts.Skip(1));
+
+                        if (cmd == "/listrooms")
+                        {
+                            client.Tell(new ListRoomsMessage());
+                        }
+                    }
+                    else
+                    {
+                        /*
+                        chatClient.Tell(new SayRequest()
+                        {
+                            Text = input,
+                        });*/
+                    }
+                }
+
                 Console.ReadLine();
             }
         }

@@ -14,21 +14,20 @@ namespace RoboChat.Server
         static void Main(string[] args)
         {
             var config = ConfigurationFactory.ParseString(@"
-akka {  
-    actor {
-        provider = ""Akka.Remote.RemoteActorRefProvider, Akka.Remote""
-    }
-    remote {
-        helios.tcp {
-            transport-class = ""Akka.Remote.Transport.Helios.HeliosTcpTransport, Akka.Remote""
-            applied-adapters = []
-            transport-protocol = tcp
-            port = 8081
-            hostname = localhost
-        }
-    }
-}
-");
+                akka {  
+                    actor {
+                        provider = ""Akka.Remote.RemoteActorRefProvider, Akka.Remote""
+                    }
+                    remote {
+                        helios.tcp {
+                            transport-class = ""Akka.Remote.Transport.Helios.HeliosTcpTransport, Akka.Remote""
+                            applied-adapters = []
+                            transport-protocol = tcp
+                            port = 8081
+                            hostname = localhost
+                        }
+                    }
+                }");
 
             using (var system = ActorSystem.Create("RoboChatServer", config))
             {
