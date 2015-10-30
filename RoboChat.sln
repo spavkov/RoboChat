@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboChat.Server", "RoboChat.Server\RoboChat.Server.csproj", "{9EACCE84-DDA2-4F67-A88C-2D17ED9E715B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboChat.Common", "RoboChat.Common\RoboChat.Common.csproj", "{0A1C62DB-8132-428E-B8C1-9D32E8D9D11E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboChat.Client", "RoboChat.Client\RoboChat.Client.csproj", "{B5A70CEE-5DC8-48F2-B887-7B7BE005140D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EACCE84-DDA2-4F67-A88C-2D17ED9E715B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EACCE84-DDA2-4F67-A88C-2D17ED9E715B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EACCE84-DDA2-4F67-A88C-2D17ED9E715B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EACCE84-DDA2-4F67-A88C-2D17ED9E715B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1C62DB-8132-428E-B8C1-9D32E8D9D11E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1C62DB-8132-428E-B8C1-9D32E8D9D11E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1C62DB-8132-428E-B8C1-9D32E8D9D11E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1C62DB-8132-428E-B8C1-9D32E8D9D11E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5A70CEE-5DC8-48F2-B887-7B7BE005140D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5A70CEE-5DC8-48F2-B887-7B7BE005140D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5A70CEE-5DC8-48F2-B887-7B7BE005140D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5A70CEE-5DC8-48F2-B887-7B7BE005140D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
