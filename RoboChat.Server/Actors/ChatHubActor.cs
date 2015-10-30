@@ -29,7 +29,7 @@ namespace RoboChat.Server.Actors
 
         public void Handle(FindNearestHubMessage message)
         {
-            throw new Exception("Aaa");
+            Sender.Tell(new NearestHubResponseMessage(id, region));
         }
 
         public void Handle(HubNameResponseMessage message)

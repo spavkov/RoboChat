@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Akka.Actor;
 using Akka.Configuration;
+using RoboChat.Client.Actors;
 using RoboChat.Common.Messages;
 
 namespace RoboChat.Client
 {
-    internal class Program
+    internal class Program 
     {
         private static void Main(string[] args)
         {
@@ -32,8 +33,11 @@ namespace RoboChat.Client
 
             using (var system = ActorSystem.Create("RoboChatClient", config))
             {
-                var selection = system.ActorSelection("akka.tcp://RoboChatServer@localhost:8081/user/ChatServerCoordinator");
-                selection.Tell(new FindNearestHubMessage());
+                //var selection = system.ActorSelection("akka.tcp://RoboChatServer@localhost:8081/user/ChatServerCoordinator");
+                //selection.Tell(new FindNearestHubMessage());
+
+                var client = system.ActorOf(Props.Create<ChatClientActor>());
+                
                 Console.ReadLine();
             }
         }

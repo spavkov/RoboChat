@@ -38,8 +38,6 @@ namespace RoboChat.Server.Actors
         {
             var props = Props.Create<ChatHubActor>().WithRouter(new BroadcastPool(10, null, strategy, null));
             _hubs = Context.ActorOf(props, "hubs");
-            //var hubeuw1 = Context.ActorOf(Props.Create(() => new ChatHubActor("EUW1")).WithDeploy(new Deploy(new RemoteScope(new Address("akka.tcp", "RoboChatServer", "localhost", 8081)))).WithSupervisorStrategy(strategy));
-            //var hubeue1 = Context.ActorOf(Props.Create(() => new ChatHubActor("EUE1")).WithDeploy(new Deploy(new RemoteScope(new Address("akka.tcp", "RoboChatServer", "localhost", 8081)))).WithSupervisorStrategy(strategy));
         }
 
         private string GetHubName()
@@ -59,7 +57,7 @@ namespace RoboChat.Server.Actors
 
         public void Handle(FindNearestHubMessage message)
         {
-            
+            _hubs.Forward(message);
         }
 
         public void Handle(GetHubNameMessage message)
