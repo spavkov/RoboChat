@@ -48,12 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Messages\Client\ClientCreateRoomMessage.cs" />
+    <Compile Include="Messages\Client\ClientHubConnectAcknowledgement.cs" />
+    <Compile Include="Messages\Client\ClientRequestedRoomsListMessage.cs" />
+    <Compile Include="Messages\Client\ClientRoomListResponseMessage.cs" />
+    <Compile Include="Messages\ConnectToHubMessage.cs" />
     <Compile Include="Messages\FindNearestHubMessage.cs" />
     <Compile Include="Messages\GetHubNameMessage.cs" />
     <Compile Include="Messages\HubNameResponseMessage.cs" />
     <Compile Include="Messages\ListRoomsMessage.cs" />
     <Compile Include="Messages\ListRoomsResponseMessage.cs" />
     <Compile Include="Messages\NearestHubResponseMessage.cs" />
+    <Compile Include="Messages\RoomsHaveChangedMessage.cs" />
+    <Compile Include="Messages\SendRoomChatMessage.cs" />
     <Compile Include="Model\ChatRoom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

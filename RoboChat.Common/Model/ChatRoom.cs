@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Akka.Actor;
+using Akka.Routing;
 
 namespace RoboChat.Common.Model
 {
@@ -12,5 +13,6 @@ namespace RoboChat.Common.Model
         public IActorRef Owner { get;  set; }
 
         public List<IActorRef> Participants { get;  set; }
+        public string OwnerId { get; set; }
     }
 }

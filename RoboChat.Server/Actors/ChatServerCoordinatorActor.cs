@@ -5,10 +5,16 @@ using System.Linq.Expressions;
 using Akka.Actor;
 using Akka.Routing;
 using RoboChat.Common.Messages;
+using RoboChat.Common.Messages.Client;
 
 namespace RoboChat.Server.Actors
 {
-    public class ChatServerCoordinatorActor : TypedActor, IHandle<FindNearestHubMessage>, IHandle<GetHubNameMessage>, IHandle<ListRoomsMessage>
+    public class ChatServerCoordinatorActor : TypedActor, 
+        IHandle<FindNearestHubMessage>, 
+        IHandle<GetHubNameMessage>, 
+        IHandle<ListRoomsMessage>,
+        IHandle<ClientRequestedRoomsListMessage>,
+        IHandle<RoomsHaveChangedMessage>
     {
         public ChatServerCoordinatorActor()
         {
@@ -20,6 +26,9 @@ namespace RoboChat.Server.Actors
             new OneForOneStrategy(2, TimeSpan.FromSeconds(1),  
                 x =>
                 {
+
+                Console.WriteLine("Error occured on chat server: {0}", x.ToString());
+                Console.ReadLine();
                 //Maybe we consider ArithmeticException to not be application critical
                 //so we just ignore the error and keep going.
                 if (x is ArithmeticException) return Directive.Resume;
@@ -38,6 +47,8 @@ namespace RoboChat.Server.Actors
         {
             var props = Props.Create<ChatHubActor>().WithRouter(new BroadcastPool(10, null, strategy, null));
             _hubs = Context.ActorOf(props, "hubs");
+            props = Props.Create<RoomsListActor>();
+            _roomsListHub = Context.ActorOf(props, "rooms");
         }
 
         private string GetHubName()
@@ -53,6 +64,7 @@ namespace RoboChat.Server.Actors
         };
 
         private Random _rnd;
+        private IActorRef _roomsListHub;
 
 
         public void Handle(FindNearestHubMessage message)
@@ -68,6 +80,16 @@ namespace RoboChat.Server.Actors
         public void Handle(ListRoomsMessage message)
         {
             _hubs.Forward(message);
+        }
+
+        public void Handle(ClientRequestedRoomsListMessage message)
+        {
+            _roomsListHub.Tell(message, Sender);
+        }
+
+        public void Handle(RoomsHaveChangedMessage message)
+        {
+            _roomsListHub.Tell(message);
         }
     }
 }

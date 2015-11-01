@@ -6,8 +6,11 @@ namespace RoboChat.Common.Messages
     {
         public List<ChatRoomDetails> Rooms { get; private set; }
 
-        public ListRoomsResponseMessage(List<ChatRoomDetails> rooms)
+        public string HubId { get; private set; }
+
+        public ListRoomsResponseMessage(string hubId, List<ChatRoomDetails> rooms)
         {
+            HubId = hubId;
             Rooms = rooms;
         }
     }

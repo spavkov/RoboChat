@@ -8,6 +8,7 @@ using Akka.Actor;
 using Akka.Configuration;
 using RoboChat.Client.Actors;
 using RoboChat.Common.Messages;
+using RoboChat.Common.Messages.Client;
 
 namespace RoboChat.Client
 {
@@ -33,9 +34,6 @@ namespace RoboChat.Client
 
             using (var system = ActorSystem.Create("RoboChatClient", config))
             {
-                //var selection = system.ActorSelection("akka.tcp://RoboChatServer@localhost:8081/user/ChatServerCoordinator");
-                //selection.Tell(new FindNearestHubMessage());
-
                 var client = system.ActorOf(Props.Create<ChatClientActor>());
 
                 Console.WriteLine("Enter command");
@@ -51,7 +49,12 @@ namespace RoboChat.Client
 
                         if (cmd == "/listrooms")
                         {
-                            client.Tell(new ListRoomsMessage());
+                            client.Tell(new ClientRequestedRoomsListMessage());
+                        }
+
+                        if (cmd == "/createroom")
+                        {
+                            client.Tell(new ClientCreateRoomMessage(rest));
                         }
                     }
                     else
